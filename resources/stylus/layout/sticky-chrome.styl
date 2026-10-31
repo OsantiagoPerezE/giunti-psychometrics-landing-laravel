@@ -1,0 +1,16 @@
+.sticky-chrome {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  z-index: 40;
+
+  &__spacer {
+    flex-shrink: 0;
+    height: $top-bar-h + $header-h;
+
+    +lg() {
+      height: $top-bar-h-lg + $header-h-lg;
+    }
+  }
+}

@@ -1,0 +1,206 @@
+.product-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+
+  +md() {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  +lg() {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.product-slider {
+  &__frame {
+    position: relative;
+  }
+
+  &__viewport {
+    margin: -12px;
+    padding: 12px;
+    overflow: hidden;
+  }
+
+  &__track {
+    display: flex;
+    gap: 24px;
+    transition: transform 500ms ease-out;
+  }
+
+  &__pool, &__slide {
+    width: 100%;
+    flex-shrink: 0;
+    align-self: flex-start;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid rgba($primary, 0.3);
+    border-radius: 999px;
+    background: $white;
+    color: $primary;
+    box-shadow: $shadow-md;
+    transform: translateY(-50%);
+    transition: transform 200ms, background-color 200ms, color 200ms, opacity 200ms;
+    focus-ring();
+
+    &:disabled {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    +hover() {
+      background: $primary;
+      color: $white;
+      box-shadow: $shadow-lg;
+      transform: translateY(-50%) scale(1.1);
+    }
+
+    &--prev {
+      left: 4px;
+
+      +lg() {
+        left: -20px;
+      }
+    }
+
+    &--next {
+      right: 4px;
+
+      +lg() {
+        right: -20px;
+      }
+    }
+  }
+
+  &__dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 24px;
+
+    &:empty {
+      display: none;
+    }
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    background: rgba($primary, 0.3);
+    transition: width 300ms, background-color 300ms;
+    focus-ring();
+
+    +hover() {
+      background: $primary;
+    }
+
+    &[aria-current='true'] {
+      width: 32px;
+      background: $primary;
+    }
+  }
+}
+
+.product-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  overflow: hidden;
+  border: 1px solid rgba($primary, 0.1);
+  border-radius: $radius-lg;
+  background: $white;
+  box-shadow: $shadow-sm;
+  transition: transform 300ms, box-shadow 300ms, border-color 300ms;
+
+  +hover() {
+    transform: translateY(-6px);
+    border-color: rgba($primary, 0.3);
+    box-shadow: $shadow-xl;
+
+    .product-card__image {
+      transform: scale(1.1);
+    }
+  }
+
+  &:focus-within {
+    box-shadow: $shadow-lg, 0 0 0 2px $accent;
+  }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    overflow: hidden;
+    background: $surface;
+  }
+
+  &__image {
+    cover-image();
+    transition: transform 500ms;
+  }
+
+  &__badge {
+    position: absolute;
+    left: 10px;
+    top: 10px;
+  }
+
+  &__course {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    padding: 40px 12px 12px;
+    background: linear-gradient(to top, rgba($ink, 0.9), rgba($ink, 0.6), transparent);
+    color: $white;
+  }
+
+  &__course-type {
+    text(14px);
+    color: $sky-100;
+  }
+
+  &__course-info {
+    font-weight: 700;
+  }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 8px;
+    padding: 16px;
+  }
+
+  &__title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.375;
+    color: $ink;
+  }
+
+  &__meta {
+    text(14px);
+    color: rgba($ink, 0.8);
+  }
+
+  &__price {
+    margin-top: auto;
+    padding-top: 4px;
+  }
+
+  &__action {
+    margin-top: 4px;
+  }
+}

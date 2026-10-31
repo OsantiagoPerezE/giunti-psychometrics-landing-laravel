@@ -1,0 +1,55 @@
+.badge {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 999px;
+  text(12px);
+  font-weight: 600;
+
+  &--cartaceo {
+    background: #FEF3C6;
+    color: #7B3306;
+  }
+
+  &--digitale {
+    background: #DFF2FE;
+    color: #024A70;
+  }
+
+  &--corso-online {
+    background: #E0E7FF;
+    color: #312C85;
+  }
+
+  &--in-presenza {
+    background: #D0FAE5;
+    color: #004E3B;
+  }
+}
+
+.price {
+  &__row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+  }
+
+  &__final {
+    text(20px);
+    font-weight: 700;
+    color: $primary;
+  }
+
+  &__discount {
+    padding: 2px 6px;
+    border-radius: 4px;
+    background: $accent;
+    color: $ink;
+    text(12px);
+    font-weight: 700;
+  }
+
+  &__original {
+    text(14px);
+    color: rgba($ink, 0.7);
+  }
+}

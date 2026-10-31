@@ -1,0 +1,95 @@
+.pill {
+  flex-shrink: 0;
+  scroll-snap-align: start;
+  white-space: nowrap;
+  padding: 10px 16px;
+  border: 1px solid rgba($primary, 0.3);
+  border-radius: 999px;
+  background: $white;
+  color: $ink;
+  text(14px);
+  font-weight: 500;
+  transition: transform 200ms, background-color 200ms, color 200ms, border-color 200ms, box-shadow 200ms;
+  focus-ring();
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  +hover() {
+    border-color: $primary;
+    background: $surface;
+    box-shadow: $shadow-sm;
+    transform: translateY(-2px);
+  }
+
+  +md() {
+    padding: 8px 16px;
+  }
+
+  &.is-active {
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+    box-shadow: $shadow-md;
+
+    +hover() {
+      border-color: $ink;
+      background: $ink;
+    }
+  }
+}
+
+.toggle-pill {
+  cursor: pointer;
+
+  &__label {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid rgba($primary, 0.3);
+    border-radius: 999px;
+    background: $white;
+    color: $ink;
+    text(14px);
+    font-weight: 500;
+    transition: transform 200ms, background-color 200ms, color 200ms, border-color 200ms;
+  }
+
+  +hover() {
+    .toggle-pill__label {
+      border-color: $primary;
+      background: $surface;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__input:checked + .toggle-pill__label {
+    border-color: $primary;
+    background: $primary;
+    color: $white;
+  }
+
+  &__input:focus-visible + .toggle-pill__label {
+    outline: 2px solid $accent;
+    outline-offset: 2px;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  background: rgba($primary, 0.1);
+  color: $primary;
+  text(14px);
+  font-weight: 500;
+  transition: background-color 150ms, color 150ms;
+  focus-ring();
+
+  +hover() {
+    background: $primary;
+    color: $white;
+  }
+}

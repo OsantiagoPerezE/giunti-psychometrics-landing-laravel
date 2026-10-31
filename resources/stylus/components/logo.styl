@@ -1,0 +1,52 @@
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  border-radius: 4px;
+  focus-ring(4px);
+
+  &__mark {
+    width: 40px;
+    height: 40px;
+    transition: width 300ms, height 300ms;
+
+    +md() {
+      width: 48px;
+      height: 48px;
+    }
+  }
+
+  &__text {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.05;
+    transition: font-size 300ms;
+
+    +md() {
+      font-size: 20px;
+    }
+
+    +lg() {
+      font-size: 24px;
+    }
+  }
+
+  &--header &__text {
+    color: $primary;
+  }
+
+  &--footer {
+    display: inline-flex;
+  }
+
+  &--footer &__mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  &--footer &__text {
+    font-size: 20px;
+    color: $white;
+  }
+}

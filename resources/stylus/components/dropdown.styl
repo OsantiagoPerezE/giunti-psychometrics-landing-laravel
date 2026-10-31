@@ -1,0 +1,93 @@
+.dropdown {
+  position: relative;
+
+  &__chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform 200ms;
+  }
+
+  &.is-open &__chevron {
+    transform: rotate(180deg);
+  }
+
+  &__panel {
+    position: absolute;
+    right: 0;
+    top: 100%;
+    z-index: 50;
+    width: 288px;
+    padding-top: 8px;
+    animation: menu-in 180ms ease-out;
+  }
+
+  &__list {
+    padding: 8px;
+    border: 1px solid rgba($primary, 0.1);
+    border-radius: $radius;
+    background: $white;
+    box-shadow: $shadow-xl;
+  }
+
+  &__item {
+    width: 100%;
+    padding: 10px 12px;
+    border-radius: $radius-sm;
+    text-align: left;
+    color: $ink;
+    transition: transform 150ms, background-color 150ms, color 150ms;
+    focus-ring(0);
+
+    +hover() {
+      transform: translateX(4px);
+      background: $surface;
+      color: $primary;
+    }
+  }
+}
+
+.quick-links {
+  display: none;
+  animation: menu-in 180ms ease-out;
+
+  +lg() {
+    .is-scrolled & {
+      display: block;
+    }
+  }
+
+  &__toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 999px;
+    color: $ink;
+    transition: transform 200ms, background-color 200ms, color 200ms;
+    focus-ring();
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    +hover() {
+      background: $surface;
+      color: $primary;
+    }
+  }
+
+  &.is-open &__toggle {
+    background: $surface;
+    color: $primary;
+  }
+
+  &__label {
+    margin-top: 8px;
+    padding: 12px 12px 4px;
+    border-top: 1px solid rgba($ink, 0.1);
+    text(14px);
+    font-weight: 700;
+    color: $ink;
+  }
+}

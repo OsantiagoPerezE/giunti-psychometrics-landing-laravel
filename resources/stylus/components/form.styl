@@ -1,0 +1,33 @@
+.input {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid rgba($primary, 0.3);
+  border-radius: $radius-sm;
+  background: $white;
+  color: $ink;
+  transition: border-color 150ms, box-shadow 150ms;
+
+  &::placeholder {
+    color: rgba($ink, 0.5);
+  }
+
+  &:hover {
+    border-color: $primary;
+  }
+
+  &:focus {
+    border-color: $primary;
+    outline: none;
+    box-shadow: 0 0 0 4px rgba($primary, 0.2);
+  }
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba($white, 0.4);
+  border-top-color: $white;
+  border-radius: 999px;
+  animation: spin 800ms linear infinite;
+}

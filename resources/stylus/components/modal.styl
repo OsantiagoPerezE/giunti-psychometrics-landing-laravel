@@ -1,0 +1,89 @@
+.modal {
+  margin: auto;
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: $radius;
+  overflow: hidden;
+  background: $white;
+  color: $ink;
+  box-shadow: $shadow-2xl;
+
+  &[open] {
+    animation: modal-in 300ms $ease-out;
+    transform-origin: 100% 0;
+  }
+
+  &::backdrop {
+    background: rgba($ink, 0.6);
+    backdrop-filter: blur(4px);
+  }
+
+  &[open]::backdrop {
+    animation: backdrop-in 240ms ease-out;
+  }
+
+  &--search {
+    width: unquote('min(92vw, 52rem)');
+  }
+
+  &--filters {
+    width: unquote('min(92vw, 28rem)');
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 24px;
+  }
+
+  &__head {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  &__close {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    border-radius: $radius-sm;
+    background: $surface;
+    color: $primary;
+    transition: transform 200ms, background-color 200ms, color 200ms;
+    focus-ring();
+
+    svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    &:active {
+      transform: scale(0.9);
+    }
+
+    +hover() {
+      transform: rotate(90deg);
+      background: $primary;
+      color: $white;
+    }
+
+    &--small {
+      width: 40px;
+      height: 40px;
+
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
+
+.has-modal {
+  overflow: hidden;
+}

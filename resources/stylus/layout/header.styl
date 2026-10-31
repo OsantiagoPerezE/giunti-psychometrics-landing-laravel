@@ -1,0 +1,275 @@
+.header {
+  position: relative;
+  background: $white;
+  box-shadow: $shadow-sm;
+  transition: background-color 300ms, box-shadow 300ms;
+
+  .is-scrolled & {
+    background: rgba($white, 0.85);
+    box-shadow: $shadow-lg;
+    backdrop-filter: blur(12px);
+  }
+
+  &__inner {
+    container($container-wide);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    height: $header-h;
+    transition: height 300ms;
+
+    +md() {
+      gap: 32px;
+    }
+
+    +lg() {
+      gap: 80px;
+      height: $header-h-lg;
+      padding-left: 80px;
+      padding-right: 80px;
+    }
+
+    .is-scrolled & {
+      height: 64px;
+
+      +lg() {
+        height: 72px;
+      }
+    }
+  }
+
+  .is-scrolled & .logo__mark {
+    width: 40px;
+    height: 40px;
+  }
+
+  +lg() {
+    .is-scrolled & .logo__text {
+      font-size: 20px;
+    }
+  }
+
+  &__nav {
+    display: none;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 100%;
+    padding: 16px;
+    border-top: 1px solid rgba($primary, 0.1);
+    background: $white;
+    box-shadow: $shadow-md;
+
+    +lg() {
+      display: block;
+      position: static;
+      padding: 0;
+      border: 0;
+      background: none;
+      box-shadow: none;
+    }
+  }
+
+  &.is-menu-open &__nav {
+    display: block;
+  }
+
+  &.is-mega-open &__nav {
+    display: none;
+
+    +lg() {
+      display: block;
+    }
+  }
+
+  &__nav-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+
+    +lg() {
+      flex-direction: row;
+      align-items: center;
+      gap: 36px;
+    }
+  }
+
+  &__nav-link {
+    position: relative;
+    display: block;
+    padding: 8px 4px;
+    border-radius: 4px;
+    text(18px);
+    font-weight: 500;
+    color: $ink;
+    transition: color 150ms;
+    focus-ring();
+
+    +lg() {
+      text(20px);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      left: 4px;
+      right: 4px;
+      bottom: 0;
+      height: 2px;
+      border-radius: 2px;
+      background: $accent;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 300ms;
+    }
+
+    +hover() {
+      color: $primary;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+
+    &[aria-current='true'], &[aria-current='page'] {
+      color: $primary;
+
+      &::after {
+        transform: scaleX(1);
+      }
+    }
+  }
+
+  &__mega-toggle {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  &.is-mega-open &__mega-toggle {
+    color: $primary;
+
+    &::after {
+      transform: scaleX(1);
+    }
+  }
+
+  &__mega-chevron {
+    width: 16px;
+    height: 16px;
+    transition: transform 200ms;
+  }
+
+  &.is-mega-open &__mega-chevron {
+    transform: rotate(180deg);
+  }
+
+  &__nav-mobile-only {
+    +lg() {
+      display: none;
+    }
+
+    &--md {
+      padding-top: 8px;
+
+      +md() {
+        display: none;
+      }
+    }
+  }
+
+  &__nav-extra {
+    margin-top: 8px;
+    padding-top: 8px;
+    border-top: 1px solid rgba($ink, 0.1);
+  }
+
+  &__nav-login {
+    padding: 12px 24px;
+    text(18px);
+  }
+
+  &__nav-extra-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__nav-extra-link {
+    display: block;
+    padding: 6px 4px;
+    border-radius: 4px;
+    color: rgba($ink, 0.8);
+    focus-ring();
+
+    +hover() {
+      color: $primary;
+    }
+
+    &--sub {
+      padding-left: 20px;
+    }
+  }
+
+  &__actions {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: auto;
+
+    +md() {
+      gap: 6px;
+    }
+  }
+
+  &__login {
+    display: none;
+    padding: 12px 24px;
+    text(18px);
+
+    +md() {
+      display: inline-flex;
+      margin-right: 16px;
+    }
+
+    +lg() {
+      text(20px);
+    }
+  }
+
+  &__menu-toggle {
+    +lg() {
+      display: none;
+    }
+  }
+
+  &__menu-close {
+    display: none;
+  }
+
+  &.is-menu-open &__menu-open {
+    display: none;
+  }
+
+  &.is-menu-open &__menu-close {
+    display: inline;
+  }
+
+  &__progress {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background: linear-gradient(to right, $primary, $accent);
+    transform: scaleX(var(--scroll, 0));
+    transform-origin: left;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 300ms;
+
+    .is-scrolled & {
+      opacity: 1;
+    }
+  }
+}
