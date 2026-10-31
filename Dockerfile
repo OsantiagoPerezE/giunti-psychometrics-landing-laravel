@@ -5,7 +5,7 @@ WORKDIR /app
 COPY package.json package-lock.json ./
 RUN npm ci --no-audit --no-fund
 
-COPY webpack.mix.js ./
+COPY webpack.mix.js artisan ./
 COPY resources ./resources
 RUN npm run build
 
