@@ -4,8 +4,13 @@ Prueba técnica Frontend Developer. Réplica del **home** y de la página de **c
 implementada con Laravel: mismas secciones, misma tipografía, mismos tamaños y colores y mismo comportamiento.
 Textos en italiano, datos ficticios.
 
-> Versión A (Next.js): `<URL del repo giunti-psychometrics-landing-nextjs>`
+> Versión A (Next.js): https://github.com/OsantiagoPerezE/giunti-psychometrics-landing-nextjs
 > Este es un repositorio **separado** del de la Versión A.
+
+**Demo en producción:**
+
+- Versión B (Laravel): https://giunti-psychometrics-landing-larave-six.vercel.app/
+- Versión A (Next.js): https://giunti-psychometrics-landing-nextjs.vercel.app/
 
 ## Desarrollo asistido por IA
 
@@ -201,7 +206,25 @@ y `lg()` (desde 1280 px). La grilla de productos tiene 1, 2 y 3 columnas. Verifi
 
 ## Despliegue
 
-- URL pública: _por completar (opcional, punto extra)_. Requiere un hosting con PHP (Railway, Render…).
+- URL pública: https://giunti-psychometrics-landing-larave-six.vercel.app/
+- Desplegado en **Vercel** con su runtime de contenedores (Container Runtime, en beta), siguiendo la
+  [guía oficial de Laravel en Vercel](https://vercel.com/kb/guide/laravel-php-with-docker). Está conectado al
+  repositorio de GitHub: cada push a `main` genera un nuevo despliegue de producción.
+- Archivos del despliegue:
+  - `Dockerfile`: tres etapas. Node 22 compila Stylus y JS con Laravel Mix; Composer instala las
+    dependencias sin las de desarrollo; FrankenPHP con PHP 8.4 sirve la aplicación. Se usa PHP 8.4 porque
+    algunos componentes de Symfony 8 de `composer.lock` lo exigen.
+  - `Caddyfile`: sirve los archivos de `public/` y envía el resto de peticiones a `index.php`.
+  - `.dockerignore`: excluye `.env`, `vendor`, `node_modules`, los assets compilados y las cachés locales de
+    `bootstrap/cache`, que incluyen paquetes de desarrollo.
+  - `vercel.json`: declara el servicio con `"runtime": "container"` y envía todas las rutas a él.
+- **Variable de entorno en Vercel:** solo `APP_KEY`, generada con `php artisan key:generate --show`. El resto
+  (`APP_ENV=production`, `APP_DEBUG=false`, `LOG_CHANNEL=stderr`, caché y sesión en memoria) se define en el
+  `Dockerfile`.
+- La etapa de Node copia también `artisan`, porque Laravel Mix detecta que está en un proyecto Laravel por
+  ese archivo, y solo entonces escribe en `public/`.
+- Si no recibe visitas durante 5 minutos, el contenedor se apaga y la siguiente visita tarda unos segundos
+  más.
 
 ## Notas
 
