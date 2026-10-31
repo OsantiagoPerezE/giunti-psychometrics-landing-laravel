@@ -1,0 +1,15 @@
+.git
+.env
+.env.*
+!.env.example
+node_modules
+vendor
+public/css
+public/js
+public/mix-manifest.json
+bootstrap/cache/*.php
+storage/logs/*.log
+storage/framework/cache/data
+storage/framework/sessions/*
+storage/framework/views/*.php
+.DS_Store
